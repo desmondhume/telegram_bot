@@ -3,6 +3,8 @@ module TelegramBot
     include Virtus.model
     attribute :chat, Channel
     attribute :text, String
+    attribute :keyboard, Keyboard
+    attribute :one_time_keyboard, Boolean
 
     def send_with(bot)
       bot.send_message(self)
@@ -15,7 +17,8 @@ module TelegramBot
     def to_h
       {
         text: text,
-        chat_id: chat.id
+        chat_id: chat.id,
+        keyboard: keyboard.options
       }
     end
   end
