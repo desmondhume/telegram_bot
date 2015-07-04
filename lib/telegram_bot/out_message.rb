@@ -3,8 +3,7 @@ module TelegramBot
     include Virtus.model
     attribute :chat, Channel
     attribute :text, String
-    attribute :keyboard, Array[Array[String]]
-    attribute :one_time_keyboard, Boolean
+    attribute :reply_markup, String
 
     def send_with(bot)
       bot.send_message(self)
@@ -18,11 +17,8 @@ module TelegramBot
       hash = {
         text: text,
         chat_id: chat.id,
-        keyboard: keyboard
+        reply_markup: reply_markup
       }
-      if keyboard
-        hash[:keyboard] = keyboard
-      end
     end
   end
 end
